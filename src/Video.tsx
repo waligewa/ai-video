@@ -1,14 +1,9 @@
 // 全片：背景渐变 + 各场景按时轴轮换 + 青色进度条；BGM 存在时自动挂载
 import React from "react";
-import fs from "fs";
-import path from "path";
-import { AbsoluteFill, Audio, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { Scene } from "./Scene";
 import { theme } from "./theme";
 import { FPS, SCENES, TOTAL_FRAMES } from "./timeline";
-
-const bgmPath = path.join(__dirname, "..", "public", "bgm.mp3");
-const hasBgm = fs.existsSync(bgmPath);
 
 export const Video: React.FC = () => {
   const frame = useCurrentFrame();
@@ -30,7 +25,7 @@ export const Video: React.FC = () => {
         fontFamily: theme.font.family,
       }}
     >
-      {hasBgm && <Audio src={require("./../public/bgm.mp3")} volume={(f) => interpolate(f, [0, 30, TOTAL_FRAMES - 30, TOTAL_FRAMES], [0, 0.35, 0.35, 0], { extrapolateRight: "clamp" })} />}
+      <Audio src={staticFile("bgm.mp3")} volume={(f) => interpolate(f, [0, 30, TOTAL_FRAMES - 30, TOTAL_FRAMES], [0, 0.35, 0.35, 0], { extrapolateRight: "clamp" })} />
       {current && (
         <Scene
           key={current.id}
