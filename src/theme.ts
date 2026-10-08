@@ -5,7 +5,7 @@ export const theme = {
     bgGradientEnd: "#060A12", // 渐变底部更暗
     title: "#FFFFFF", // 白色粗体标题
     text: "rgba(255,255,255,0.85)", // 正文
-    textDim: "rgba(255,255,255,0.45)", // 半暗（已看过的要点）
+    textDim: "rgba(255,255,255,0.55)", // 半暗（已看过的要点，第21篇：55% 降优先级但不藏起来）
     accent: "#22D3EE", // 青色高亮（当前要点/角标/进度）
     kicker: "#22D3EE", // 角标同高亮色
   },

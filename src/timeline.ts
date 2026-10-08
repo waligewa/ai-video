@@ -56,5 +56,5 @@ export const TOTAL_SECONDS = (() => {
   const last = scenes[scenes.length - 1];
   return last.startSec + last.durationSec;
 })();
-export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * FPS);
+export const TOTAL_FRAMES = Math.round(TOTAL_SECONDS * FPS) + 24; // 末动作后至少留 0.8s（第21篇停留规则）
 export const TRANSITION_FRAMES = Math.round(TRANSITION * FPS);

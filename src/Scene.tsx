@@ -67,7 +67,7 @@ export const Scene: React.FC<{ scene: SceneTiming }> = ({ scene }) => {
         // 当前条全亮（青色标记），后面的条出现后自己降为半暗
         const isCurrent = sceneSec >= startSec && sceneSec < nextStart;
         const itemEnter = appeared
-          ? spring({ frame: frame - Math.round(startSec * 30), fps, config: { damping: 200 } })
+          ? spring({ frame: frame - Math.round(startSec * 30), fps, config: { damping: 16, stiffness: 100 } })
           : 0;
         return (
           <div
