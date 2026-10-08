@@ -4,9 +4,11 @@
 
 ## 当前阶段
 
-demo-01 全流程跑通：成片 preview-h.mp4（横版主）＋preview-v.mp4（竖版备份）已出，34.1s、约 2.8MB，含第 21 篇质感三件套。流水线可复用，下一支换 storyboard 即可。
+stormzhang 版式模板组件已落地并成为当前 storyboard（storyboards/stormzhang-3ways.json）。demo-01 菜谱已归档至 storyboards/demo-01.json 不再使用。一键换菜：npm run use -- <name>（scripts/use-storyboard.mjs，Windows 下用读写不用 cpSync）；一键渲染 npm run render（横版）/npm run render:v（竖版），成片自动按 videoId 命名（scripts/render.mjs），已实测出 out/stormzhang-3ways-h.mp4（945 帧/31.5s/3MB）。
 
 ## 已完成（均验证过）
+
+- 2026-10-08 深夜 stormzhang 版式组件落地：Scene 新增 4 种 layout（statement 大字观点/cards 卡片横排青色描边高亮/diagram mac三圆点线框窗口+侧栏条目/demo 录屏占位），timeline 新增字幕轨 SUBTITLES＋meta.subtitleBar 开关，Video 挂全局底部 SubtitleBar；stormzhang-3ways.json 换入实测渲帧 30/185/265 验证三种页型正常、字幕条出字正确，验后已恢复 demo storyboard；tsc 通过。demo-01 原 storyboard 无 layout 字段，行为零变化
 
 - 2026-10-08 按第21篇第12节做质感实验：改前/改后同帧对照存 out/cmp/（228/285/330/855 四时刻）；改动=旧要点 55% 降级、要点弹簧 damping16/stiffness100、双色光斑呼吸背景（振幅 0.012、周期 12.6s）、片尾 0.8s 停留＋20 帧整体淡出；tsc 通过、Studio 构建 150ms
 
@@ -21,6 +23,7 @@ demo-01 全流程跑通：成片 preview-h.mp4（横版主）＋preview-v.mp4（
 - 无
 
 ## 待办
+
 
 - [ ] 换真 BGM 覆盖 public/bgm.mp3 后重渲（现为静音占位）
 - [ ] 接第 20 篇声音克隆做带旁白完整版（可选，Windows 无 N 卡建议走 MiniMax 云端）

@@ -23,6 +23,9 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "use": "node scripts/use-storyboard.mjs",
+    "render": "node scripts/render.mjs",
+    "render:v": "node scripts/render.mjs v"
   }
 }

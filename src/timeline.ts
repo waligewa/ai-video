@@ -10,6 +10,7 @@ export type SceneTiming = {
   id: string;
   kicker: string;
   title: string;
+  layout?: "statement" | "cards" | "diagram" | "demo"; // 版式页类型（缺省＝角标+标题+要点列表）
   bullets: string[];
   startSec: number;
   durationSec: number;
@@ -42,6 +43,7 @@ const scenes: SceneTiming[] = (() => {
     });
     const timing: SceneTiming = {
       ...scene,
+      layout: (scene as { layout?: SceneTiming["layout"] }).layout,
       startSec: cursor,
       durationSec,
       bulletStarts,
@@ -52,6 +54,26 @@ const scenes: SceneTiming[] = (() => {
 })();
 
 export const SCENES = scenes;
+
+// 字幕轨：标题先念、要点按各自入场时间顺序念（stormzhang 式底部常驻字幕条的语料源）
+export type SubtitleCue = { text: string; startSec: number; endSec: number };
+export const SUBTITLES: SubtitleCue[] = (() => {
+  const cues: SubtitleCue[] = [];
+  for (const sc of scenes) {
+    const titleStart = sc.startSec;
+    if (sc.bullets.length === 0) {
+      cues.push({ text: sc.title, startSec: titleStart, endSec: sc.startSec + sc.durationSec });
+      continue;
+    }
+    cues.push({ text: sc.title, startSec: titleStart, endSec: sc.startSec + sc.bulletStarts[0] });
+    sc.bullets.forEach((b, i) => {
+      const end = sc.bulletStarts[i + 1] ?? sc.startSec + sc.durationSec;
+      cues.push({ text: b, startSec: sc.startSec + sc.bulletStarts[i], endSec: end });
+    });
+  }
+  return cues;
+})();
+export const SUBTITLE_ON = (storyboard.meta as { subtitleBar?: boolean }).subtitleBar === true;
 export const TOTAL_SECONDS = (() => {
   const last = scenes[scenes.length - 1];
   return last.startSec + last.durationSec;

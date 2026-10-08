@@ -3,7 +3,7 @@ import React from "react";
 import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { Scene } from "./Scene";
 import { theme } from "./theme";
-import { FPS, SCENES, TOTAL_FRAMES } from "./timeline";
+import { FPS, SCENES, SUBTITLES, SUBTITLE_ON, TOTAL_FRAMES } from "./timeline";
 
 export const Video: React.FC = () => {
   const frame = useCurrentFrame();
@@ -62,6 +62,8 @@ export const Video: React.FC = () => {
           scene={{ ...current, durationSec: current.durationSec }}
         />
       )}
+      {/* 底部常驻字幕条（stormzhang 式）：当前口播句白色大字居中，随时间轴逐句切 */}
+      {SUBTITLE_ON && <SubtitleBar sec={sec} />}
       {/* 进度条：已播青色 / 未播白 20% */}
       <div
         style={{
@@ -84,5 +86,36 @@ export const Video: React.FC = () => {
         />
       </div>
     </AbsoluteFill>
+  );
+}
+// 底部字幕条：只在 cue 窗口内显示，入场 8 帧淡入
+const SubtitleBar: React.FC<{ sec: number }> = ({ sec }) => {
+  const cue = SUBTITLES.find((c) => sec >= c.startSec && sec < c.endSec);
+  if (!cue) return null;
+  const fadeIn = Math.min(1, (sec - cue.startSec) * 30 / 8);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: theme.size.safe,
+        right: theme.size.safe,
+        bottom: 110,
+        display: "flex",
+        justifyContent: "center",
+        opacity: fadeIn,
+      }}
+    >
+      <div
+        style={{
+          fontSize: 36,
+          fontWeight: 600,
+          color: theme.color.title,
+          textShadow: "0 4px 16px rgba(0,0,0,0.6)",
+          textAlign: "center",
+        }}
+      >
+        {cue.text}
+      </div>
+    </div>
   );
 };
