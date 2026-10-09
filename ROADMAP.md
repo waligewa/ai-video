@@ -21,13 +21,15 @@ stormzhang 版式模板组件已落地并成为当前 storyboard（storyboards/s
 - 2026-10-08 第 4 步审核：作者口头通过（「进行第5步吧」），未逐条细审
 - 2026-10-08 第 5 步组装：timeline.ts（5 字/秒 + 1s 呼吸、要点按字数占比、场景重叠 0.5s 过渡）、Scene.tsx（入场淡入+右滑、要点逐条入场当前全亮前条半暗）、Video.tsx（渐变背景 + 青色进度条 + BGM 自动检测挂载）、1080×1920@30fps；tsc 通过、Studio 热更新构建 133ms；修复 Scene 全局帧号 bug
 
+- 2026-10-09 playbook-test 验证片：storyboards/playbook-test.json（12 场景覆盖 11 种 play 节点＋钩子屏），渲染 out/playbook-test-h.mp4（831 帧/27.7s/4MB），抽 12 场景中点帧＋grid/timeline 末尾帧目检（out/playbook-check/）：11 种节点全部正常渲染，grid/timeline 逐个点亮动效正常（中点帧半亮是中途态非 bug），table 白底高亮行红框正常，clip 场景正常播放占位素材（public/placeholder-clip.mp4，由成片复制）；文案自拟仅验证用
+
 ## 进行中
 
 - 无
 
 ## 待办
 
-- [ ] 用六类打法各写一支实战 storyboard 验证节点渲染效果（尤其 stat 大数字/表格/timeline/clip）
+- [x] 用六类打法各写一支实战 storyboard 验证节点渲染效果（尤其 stat 大数字/表格/timeline/clip）——playbook-test 已验证
 - [ ] 换真 BGM 覆盖 public/bgm.mp3 后重渲（现为静音占位）
 - [ ] 接第 20 篇声音克隆做带旁白完整版（可选，Windows 无 N 卡建议走 MiniMax 云端）
 
@@ -35,8 +37,11 @@ stormzhang 版式模板组件已落地并成为当前 storyboard（storyboards/s
 
 - 无
 
+- [ ] 用真实题材＋真实数据写一支可发布的 storyboard（当前 playbook-test 文案为占位）
+
 ## 最近验证
 
+- 2026-10-09 playbook-test：npm run render 成功（831 帧/4MB），11 种 play 节点抽帧目检全部通过
 - 2026-10-09 六类打法改动后 lint 0 错误、npm run render 回归通过（stormzhang-3ways-h.mp4 945 帧/3MB）
 - 2026-10-08 22:xx 成片双版渲染成功：preview-h.mp4 / preview-v.mp4 均 34.1s（1023 帧）与时间轴一致，2.8MB/2.7MB；第 21 篇改动经作者对照帧验收「都比之前好」后应用全片
 - 2026-10-08 Studio 启动正常，3000 端口 200

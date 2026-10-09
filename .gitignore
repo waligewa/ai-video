@@ -8,3 +8,6 @@ out
 
 # 拆解分析临时帧（不进仓库）
 tmp_v*/
+
+# clip 占位素材（由 out/ 成片复制生成，可随时重建）
+public/placeholder-clip.mp4
