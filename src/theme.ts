@@ -10,9 +10,9 @@ export const theme = {
     kicker: "#22D3EE", // 角标同高亮色
   },
   font: {
-    family: '"Microsoft YaHei", "PingFang SC", sans-serif',
-    titleWeight: 700,
-    textWeight: 400,
+    family: '"Microsoft YaHei", "PingFang SC", sans-serif', // 中文字体栈（雅黑→苹方→系统默认）
+    titleWeight: 700, // 标题字重（粗体）
+    textWeight: 400, // 正文字重（常规）
   },
   size: {
     kicker: 26, // 角标（如「死因一」）

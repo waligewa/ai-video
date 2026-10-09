@@ -6,6 +6,7 @@ import { TOTAL_FRAMES } from "./timeline";
 export const MyComposition: React.FC = () => {
   return (
     <>
+      {/* preview-h＝横版 1920×1080（主力形态） */}
       <Composition
         id="preview-h"
         component={Video}
@@ -14,6 +15,7 @@ export const MyComposition: React.FC = () => {
         width={1920}
         height={1080}
       />
+      {/* preview-v＝竖版 1080×1920（手机全屏形态） */}
       <Composition
         id="preview-v"
         component={Video}
